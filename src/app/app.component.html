@@ -1,0 +1,13 @@
+<div class="center" style='text-align:center'>
+  <h1 style='color:#000000'>
+    {{ title }}
+  </h1>
+</div>
+<div  class="center" style='text-align:center'>
+  <button [routerLink]="['/users']">USERS</button>&nbsp;&nbsp;
+  <button [routerLink]="['/tasks']">TASKS</button>
+</div>
+<div  class="center" style='text-align:center'>
+    <router-outlet></router-outlet>
+</div>
+

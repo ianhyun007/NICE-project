@@ -1,0 +1,22 @@
+<div *ngIf='user'><br><br>
+    <h1>{{user.userName}}'s INFORMATION</h1>
+    <form (ngSubmit)="updateUser()" [formGroup]="userDetailForm" >
+        <table align='center'>
+            <thead>
+                <tr>
+                    <th>USER ID</th>        
+                    <th>USER NAME</th>        
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style='background-color: #607D8B;color:white'>{{user.id}}</td>
+                    <td><input type='text' formControlName="userName" value='{{user.userName}}' style='text-align:center'></td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <button [routerLink]="['/users']">GO BACK</button>&nbsp;&nbsp;
+        <button type="submit">UPDATE</button>
+    </form>
+</div>

@@ -1,0 +1,35 @@
+<div>
+    <br><br><br><br>
+    <div style='font-size:18px'>
+        <label>FILTER BY:</label>&nbsp;
+        <input type="radio" name="colors" [routerLink]="['/filteredTasks', 'NS']">NOT STARTED
+        <input type="radio" name="colors" [routerLink]="['/filteredTasks', 'IP']">IN PROGESS
+        <input type="radio" name="colors" [routerLink]="['/filteredTasks', 'NC']">NOT COMPLETED
+        <input type="radio" name="colors" [routerLink]="['/filteredTasks', 'CP']">COMPLETED
+    </div>
+    <h1>{{taskListHeading}} TASK LIST</h1>
+    <table align='center' *ngIf='tasks && tasks.length' >
+        <thead>
+            <tr>
+                <th style='text-decoration: underline;'>ID</th>        
+                <th style='text-decoration: underline;'>NAME</th>        
+                <th style='text-decoration: underline;'>DESCRIPTION</th>        
+                <th style='text-decoration: underline;'>STATUS</th>        
+                <th style='text-decoration: underline;'>USER</th>
+                <th></th>                        
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let task of tasks'>
+                <td style='background-color: #607D8B;color:white'>{{task.id}}</td>
+                <td>{{task.name}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.status}}</td>
+                <td>{{task.assignedUser.userName}}</td>
+                <td><button [routerLink]="['/tasks', task.id]">EDIT</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <button [routerLink]="['/tasks', 'NEW']">CREATE NEW TASK</button>
+</div>

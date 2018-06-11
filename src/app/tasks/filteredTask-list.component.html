@@ -1,0 +1,34 @@
+<div>
+    <br><br><br>
+    <div style='font-size:18px'>
+        <label>FILTER BY:</label>&nbsp;
+        <input type="radio" name="colors" (click)="filterClicked('NS')">NOT STARTED
+        <input type="radio" name="colors" (click)="filterClicked('IP')">IN PROGESS
+        <input type="radio" name="colors" (click)="filterClicked('NC')">NOT COMPLETED
+        <input type="radio" name="colors" (click)="filterClicked('CP')">COMPLETED
+        <input type="radio" name="colors" [routerLink]="['/tasks']">ALL TASKS
+    </div>
+    <h1>{{taskListHeading}} TASK LIST</h1>
+    <table align='center' *ngIf='tasks && tasks.length'>
+        <thead>
+            <tr>
+                <th style='text-decoration: underline;'>ID</th>        
+                <th style='text-decoration: underline;'>NAME</th>        
+                <th style='text-decoration: underline;'>DESCRIPTION</th>        
+                <th style='text-decoration: underline;'>STATUS</th>        
+                <th style='text-decoration: underline;'>USER</th>    
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let task of tasks' style='height:35px'>
+                <td style='background-color: #607D8B;color:white'>{{task.id}}</td>
+                <td>{{task.name}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.status}}</td>
+                <td>{{task.assignedUser.userName}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <button [routerLink]="['/tasks']">GO BACK</button>
+</div>

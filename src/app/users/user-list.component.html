@@ -1,0 +1,30 @@
+<div>
+    <br><br><br>
+    <div>
+        <form (ngSubmit)="saveUser(username.value)" [formGroup]="userForm" >
+            <label>USER NAME:
+                <input #username formControlName="userName"/>
+            </label>
+            <button type="submit">
+                ADD USER
+            </button>      
+        </form>
+    </div>
+    <br><br>
+    <h1>USER LIST</h1>
+    <table align='center' *ngIf='users && users.length' >
+        <thead>
+            <tr>
+                <th>USER ID</th>        
+                <th colspan='2'>USER NAME</th>        
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let user of users'>
+                <td style='background-color: #607D8B;color:white'>{{user.id}}</td>
+                <td><a [routerLink]="['/users', user.id]">{{user.userName}}</a></td>
+                <td><button title='delete user' (click)='deleteUser(user)'>X</button></td>    
+            </tr>
+        </tbody>
+    </table>
+</div>

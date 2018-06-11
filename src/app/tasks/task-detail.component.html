@@ -1,0 +1,105 @@
+<div *ngIf='task'><br><br>
+    <h1>{{task.name}} TASK INFORMATION</h1>
+    <form (ngSubmit)="updateTask()" [formGroup]="taskDetailForm" >
+        <table align='center'>
+            <tbody>
+                <tr>
+                    <td>TASK ID</td>        
+                    <td style='background-color: #607D8B;color:white'>{{task.id}}</td>
+                </tr>
+                <tr>
+                    <td>TASK NAME</td>
+                    <td><input type='text' value='{{task.name}}' formControlName="name"></td>
+                </tr>
+                <tr>
+                    <td colspan='2'></td>
+                </tr>
+                <tr>
+                    <td>TASK DESCRIPTION</td>
+                    <td><input type='text' value='{{task.description}}' formControlName="description"></td>
+                </tr>
+                <tr>
+                    <td colspan='2'></td>
+                </tr>
+                <tr>
+                    <td>TASK STATUS</td>
+                    <td>
+                        <select [(ngModel)]='selectedStatusTitle' formControlName="status"> 
+                            <option value='notstarted'>NOT STARTED</option>
+                            <option value='inprogress'>IN PROGRESS</option>
+                            <option value='complete'>COMPLETED</option>
+                        </select>
+                    </td>
+                </tr>  
+                <tr>
+                    <td colspan='2'></td>
+                </tr>  
+                <tr>
+                    <td>ASSIGNED USER</td>
+                    <td>
+                        <!--<input type='text' value='{{task.assigned_user_id}}' formControlName="assigned_user_id">-->
+                        <select [(ngModel)]='selectedTaskUserId' *ngIf='users && users.length' formControlName="assigned_user_id">
+                            <option *ngFor='let user of users' value='{{user.id}}'>{{user.userName}}</option>
+                        </select>
+                    </td>
+                </tr>  
+                <tr>
+                    <td colspan='2'></td>
+                </tr>     
+            </tbody>
+        </table><br>
+        <button [routerLink]="['/tasks']">GO BACK</button>&nbsp;&nbsp;
+        <button type="submit">UPDATE</button>
+    </form>
+</div>
+
+<div *ngIf='!task'><br><br>
+    <h1>CREATE TASK INFORMATION</h1>
+        <form (ngSubmit)="createTask()" [formGroup]="taskDetailForm" >
+            <table  align='center'>
+                <tbody>
+                    <tr>
+                        <td>TASK NAME</td>
+                        <td><input type='text' id='tName' formControlName="name"></td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'></td>
+                    </tr>
+                    <tr>
+                        <td>TASK DESCRIPTION</td>
+                        <td><input type='text' id='tDescription' formControlName="description"></td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'></td>
+                    </tr>
+                    <tr>
+                        <td>TASK STATUS</td>
+                        <td>
+                            <select [(ngModel)]='defaultSelectOption' formControlName="status"> 
+                                <option value='notstarted'>NOT STARTED</option>
+                                <option value='inprogress'>IN PROGRESS</option>
+                                <option value='complete'>COMPLETED</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'></td>
+                    </tr>
+                    <tr>    
+                        <td>ASSIGNED USER</td>        
+                        <td>
+                            <!-- <input type='text' id='tAssignee' formControlName="assigned_user_id"> -->
+                            <select *ngIf='users && users.length' formControlName="assigned_user_id">
+                                <option *ngFor='let user of users' value='{{user.id}}'>{{user.userName}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan='2'></td>
+                    </tr>
+                </tbody>
+            </table><br>
+            <button [routerLink]="['/tasks']">GO BACK</button>&nbsp;&nbsp;
+            <button type="submit">CREATE</button>
+        </form>
+    </div>
